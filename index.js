@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-app.use(cors())
+app.use(cors());
 
 const vans = [
     { id: "1", name: "Modest Explorer", price: 60, description: "The Modest Explorer is a van designed to get you out of the house and into nature. This beauty is equipped with solar panels, a composting toilet, a water tank and kitchenette. The idea is that you can pack up your home and escape for a weekend or even longer!", imageUrl: "https://assets.scrimba.com/advanced-react/react-router/modest-explorer.png", type: "simple" },
@@ -22,6 +22,8 @@ app.get('/vans/:id', (req, res) => {
     res.json(van); 
 });
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log("Server started successfully");
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`Server started successfulyy on, ${port}`);
 })
