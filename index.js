@@ -1,9 +1,9 @@
 const express = require("express");
 const cors = require("cors");
-const bodyParser = require('body-parser');
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded());
 
 const vans = [
     { id: "1", name: "Modest Explorer", price: 60, description: "The Modest Explorer is a van designed to get you out of the house and into nature. This beauty is equipped with solar panels, a composting toilet, a water tank and kitchenette. The idea is that you can pack up your home and escape for a weekend or even longer!", imageUrl: "https://assets.scrimba.com/advanced-react/react-router/modest-explorer.png", type: "simple", hostId: '123' },
@@ -28,9 +28,9 @@ app.get('/vans/:id', (req, res) => {
 
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
-    if (!email || !password) res.send(400);
+    if (!email || !password) res.sendStatus(400);
     const user = users.find(user => user.email === email && user.password === password);
-    if (!user) res.send(401);
+    if (!user) res.sendStatus(401);
     res.json({ user: user.name, token: 'Some junk text' });
 });
 
